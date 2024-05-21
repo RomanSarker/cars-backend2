@@ -1,9 +1,16 @@
 import express, { Request, Response } from "express";
+import { movieRoutes } from "./modules/movies/movie.route";
 const app = express()
-const port = 3000
+
+//parser
+app.use(express.json());
+
+app.use("/api/movies",movieRoutes)
+
+
 
 app.get('/', (req: Request, res: Response) => {
-  res.send('Hello dee!')
+  res.send('Hello js!')
 })
 
 export default app;

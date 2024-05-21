@@ -1,12 +1,23 @@
+
 import mongoose from "mongoose";
 import app from "./app";
+import config from "./config";
+
+
 async function main() {
-    await mongoose.connect("mongodb+srv://apollo-flix-b3:lCqtDURU7krMLYMQ@cluster0.krwq7hl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+
+    try{
+        
+        await mongoose.connect(config.db_url as string);
   
-    const port = 5000;
-    app.listen(port, () => {
-        console.log(`Example app listening on port ${port}`)
-      })
+       
+        app.listen(config.port, () => {
+            console.log(`Example app listening on port ${config.port}`)
+          })
+    }catch(err){
+        console.log(err);
+    }
+
   }
 
   main();
